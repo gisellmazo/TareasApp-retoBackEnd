@@ -1,0 +1,69 @@
+@font-face {
+    font-family: "LoveStory";
+    src: url("../fonts/Love\ Story\ Rough.ttf");
+  }
+
+  @font-face {
+    font-family: "Microsoft";
+    src: url("../fonts/ntailu.ttf");
+  }
+
+.signup{
+    width: 100%;
+    height: 100vh;
+    margin: 0%;
+    position: fixed;
+    background-color: rgb(95, 64, 95);
+}
+
+.signupForm{
+    width: 30%;
+    padding: 3%;
+    background-color:white;
+    border-radius: 7%;
+    margin: 2% auto 5% auto;
+    display: flex;
+    flex-direction: column;
+}
+.register{
+    color:rgb(95, 64, 95);
+    font-weight: bold;
+}
+.titleTareas{
+    font-family: "LoveStory";
+    font-size: 3em;
+    text-align: center;
+    color: rgb(95, 64, 95);
+}
+
+.label{
+    font-family: "Microsoft";
+    color:rgb(95, 64, 95);
+    font-size: 1.3em;
+    font-weight: bolder;
+}
+
+.formField{
+    margin-top: 10px;
+    margin-bottom: 20px;
+    width: 370px;
+    height: 30px;
+    border-radius: 10px;
+}
+
+.btnSignup{
+    color: white;
+    background-color: rgb(95, 64, 95);
+    width: 130px;
+    height: 35px;
+    border-radius: 10px;
+    border: none;
+    font-size: 1em;
+    margin-left: 130px;
+    margin-top: 25px;
+}
+
+.btnSignup:hover{
+    cursor: pointer;
+    background-color: rgb(158, 117, 158);
+}

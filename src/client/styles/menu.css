@@ -1,0 +1,42 @@
+@font-face {
+    font-family: "LoveStory";
+    src: url("../fonts/Love\ Story\ Rough.ttf");
+  }
+
+  @font-face {
+    font-family: "Microsoft";
+    src: url("../fonts/ntailu.ttf");
+  }
+
+  .menu{
+    background-color: white;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    box-shadow: 0px 6px 18px -6px #000000;
+    position: relative;
+  }
+
+  .appName{
+      font-family: "LoveStory";
+      color:rgb(95, 64, 95);
+      padding-left: 40px;
+  }
+
+  .btnLogOut{
+    color: white;
+    background-color: rgb(95, 64, 95);
+    width: 130px;
+    height: 35px;
+    border-radius: 10px;
+    border: none;
+    font-size: 1em;
+    margin-left: 90px;
+    margin-top: 25px;
+    margin-right: 45px;
+  }
+
+  .btnLogOut:hover{
+    cursor: pointer;
+    background-color: rgb(158, 117, 158);
+}
