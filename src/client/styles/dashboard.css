@@ -11,7 +11,6 @@
   .dashboard{
       background-color: rgb(95, 64, 95);
       width: 100%;
-      height: 100vh;
       margin-top: -40px;
 
   }
@@ -20,10 +19,11 @@
       background-color: white;
       border-radius: 10px;
       width: 95%;
-      height: 500px;
+      margin-top: 40px;
       margin-left: auto;
       margin-right: auto;
       position: static;
+      padding-bottom: 42px;
   }
 
   .tasksTitle{
@@ -31,14 +31,15 @@
       text-align: center;
       color:white;
       font-size: 3em;
-      padding-top: 30px;
+      padding-top: 90px;
       letter-spacing: 3px;
   }
 
   .taskGroup{
       padding-top: 20px;
-      display: flex;
-      flex-direction:row;
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      grid-gap: 10px;
   }
 
   .task{
@@ -50,11 +51,12 @@
   }
 
   .taskName{
-    font-family: "LoveStory";
-    font-size: 1.7em;
+    /* font-family: "LoveStory"; */
+    font-size: 1.4em;
+    margin-bottom: 20px;
     text-align: center;
-    padding-top: 10px;
-    color: rgb(95, 64, 95);
+    padding-top: 15px;
+    color: rgb(158 108 158);
   }
 
   .taskImg{
@@ -68,6 +70,7 @@
     color: white;
     margin: 15px auto;
     width: 100px;
+    font-size: 1.3em;
     border-radius: 10px;
   }
 
@@ -85,8 +88,8 @@
 .buttonEditDelete{
     background-color: rgb(95, 64, 95);
     color: white;
-    width: 31px;
-    height: 30px;
+    width: 50px;
+    height: 35px;
     border-radius: 10px;
     margin-right: 10px;
     padding-left: 18px;
@@ -109,17 +112,17 @@
 }
 
 .newTaskTitle{
-    font-family: "LoveStory";
+    /* font-family: "LoveStory"; */
     font-size: 1.7em;
     text-align: center;
     padding-top: 10px;
-    color: rgb(95, 64, 95);
+    color: rgb(158 108 158);
 }
 
 .newTaskLabel{
-    color: rgb(95, 64, 95);
+    color: rgb(158 108 158);
     font-weight: bold;
-    font-family: "Microsoft";
+    /* font-family: "Microsoft"; */
     font-size: 1em;
     margin-left: 6px;
 }
@@ -158,3 +161,86 @@
     background-color: rgb(158, 117, 158);
     cursor: pointer;
 }
+
+/*Modal*/
+
+.modalHeader{
+    background-color:rgb(95, 64, 95);
+}
+
+.modalTitle {
+    color: white;
+    font-family: "LoveStory";
+    font-size: 1.8em;
+  }
+
+  .btn-close {
+    margin: -3.5rem 0.6rem 0.88rem 436px !important;
+    width: 16px !important;
+    background-color: rgb(158, 117, 158);
+    color: white;
+    border: none;
+    border-radius: 10px;
+  }
+
+  .btn-close:hover {
+    background-color: #8461a8;
+  }
+
+  .btn-yes {
+    background-color: rgb(158, 117, 158);
+    color: white;
+    border: none;
+    border-radius: 10px;
+    width: 90px;
+    height: 30px;
+  }
+  
+  .btn-yes:hover {
+    background-color: #8461a8;
+  }
+  
+  .btn-done {
+    background-color: rgb(158, 117, 158);
+    color: white;
+    border: none;
+    border-radius: 10px;
+    width: 90px;
+    height: 30px;
+  }
+  
+  .btn-done:hover {
+    background-color: #8461a8;
+  }
+  
+  .btn-no {
+    background-color: rgb(158, 117, 158);
+    color: white;
+    border: none;
+    border-radius: 10px;
+    width: 90px;
+    height: 30px;
+  }
+  
+  .btn-no:hover {
+    background-color: #8461a8;
+  }
+  
+  .btn-volver {
+    background-color: rgb(190, 140, 190);
+    color: white;
+    border: none;
+    border-radius: 10px;
+    width: 90px;
+    height: 30px;
+  }
+  
+  .btn-volver:hover {
+    background-color:#8461a8;
+  }
+  
+  .input {
+    border-radius: 20px !important;
+    box-shadow: inset -4px -4px 10px 1px #8461a8;
+  }
+  

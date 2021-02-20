@@ -18,10 +18,10 @@ module.exports = {
             {
                 test: /\.(jpe?g|png|gif|woff|woff2|eot|ttf|svg)(\?[a-z0-9=.]+)?$/,
                 use: ['url-loader', 'file-loader'],
-                options: {
-                    limit: 4096,
-                    name: '../fonts/[name].[ext]', // was '/fonts/[name].[ext]?[hash]',
-                  } 
+                // options: {
+                //     limit: 4096,
+                //     name: '../fonts/[name].[ext]', // was '/fonts/[name].[ext]?[hash]',
+                //   } 
             }
             
         ]
