@@ -11,6 +11,7 @@ app.use(morgan('dev'));
 app.use(express.json());
 
 app.use('/tasks', require('./routes/tasks'))
+app.use('/users', require('./routes/users'))
 
 app.use(express.static(path.join(__dirname, 'public')))
 

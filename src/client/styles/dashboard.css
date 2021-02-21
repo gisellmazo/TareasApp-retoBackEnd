@@ -241,6 +241,7 @@
   
   .input {
     border-radius: 20px !important;
-    box-shadow: inset -4px -4px 10px 1px #8461a8;
+    box-shadow: inset -1px -4px 10px -2px #8461a8;
+    height: 33px;
   }
   

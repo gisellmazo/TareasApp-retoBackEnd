@@ -13,35 +13,36 @@ export default function Dashboard(props) {
         taskImge: '',
         taskPriority: '',
         limitDate: '',
-        _id:''
+        _id: ''
     });
 
     const [tasks, setTasks] = useState([]);
     const [isModalDeleteOpen, setIsModalDeleteOpen] = useState(false);
+    const [isModalEditOpen, setIsModalEditOpen] = useState(false);
 
     const addTask = (e) => {
-        if(datos._id){
+        if (datos._id) {
             fetch(`/tasks/${datos._id}`, {
                 method: 'PUT',
-                body:JSON.stringify(datos),
-                headers:{
-                    'Accept':'application/json',
+                body: JSON.stringifY(datos),
+                headers: {
+                    'Accept': 'application/json',
                     'Content-Type': 'application/json'
                 }
             })
-            .then(res => res.json())
-            .then(data => {
-                console.log(data);
-                setDatos({
-                    taskName: '',
-                    taskImge: '',
-                    taskPriority: '',
-                    limitDate: '',
-                    _id: ''
-                });
-                showTask();
-            })
-        }else{
+                .then(res => res.json())
+                .then(data => {
+                    console.log(data);
+                    setDatos({
+                        taskName: '',
+                        taskImge: '',
+                        taskPriority: '',
+                        limitDate: '',
+                        _id: ''
+                    });
+                    showTask();
+                })
+        } else {
             fetch('/tasks', {
                 method: 'POST',
                 body: JSON.stringify(datos),
@@ -86,24 +87,28 @@ export default function Dashboard(props) {
             .then(res => res.json())
             .then(data => {
                 console.log(data)
+                setIsModalDeleteOpen(false) 
                 showTask();
-            
+
+
             })
     }
 
-    const editTask = (id) =>{
+   
+
+    const editTask = (id) => {
         fetch(`/tasks/${id}`)
-        .then(res => res.json())
-        .then(data =>{
-            console.log(data)
-            setDatos({
-                taskName: data.taskName,
-                taskImge: data.taskImge,
-                taskPriority: data.taskPriority,
-                limitDate: data.limitDate,
-                _id: data._id
+            .then(res => res.json())
+            .then(data => {
+                console.log(data)
+                setDatos({
+                    taskName: datos.taskName,
+                    taskImge: datos.taskImge,
+                    taskPriority: datos.taskPriority,
+                    limitDate: datos.limitDate,
+                    _id: datos._id
+                })
             })
-        })
     }
 
     const handleChange = (e) => {
@@ -125,17 +130,17 @@ export default function Dashboard(props) {
                         <form className="newTaskForm" onSubmit={addTask}>
                             <h2 className="newTaskTitle">Nueva Tarea</h2>
                             <label htmlFor="taskName" className="newTaskLabel">Nombre nueva tarea:</label>
-                            <input className="inputNewTask" onChange={handleChange} name="taskName" value={datos.taskName} type="text" />
+                            <input className="form-control input" onChange={handleChange} name="taskName"  type="text" />
                             <label htmlFor="taskImge" className="newTaskLabel">Imagen de esta tarea:</label>
-                            <input className="inputNewTask" onChange={handleChange} name="taskImge" value={datos.taskImge} type="file" />
+                            <input className="inputNewTask" onChange={handleChange} name="taskImge" type="file" />
                             <label htmlFor="taskPriority" className="newTaskLabel">Prioridad de la tarea:</label>
-                            <select className="inputNewTask" onChange={handleChange} name="taskPriority" value={datos.taskPriority} className="typePriority">
+                            <select className="inputNewTask form-control input" onChange={handleChange} name="taskPriority"  className="typePriority">
                                 <option value="low">Baja</option>
                                 <option value="medium">Media</option>
                                 <option value="high">Alta</option>
                             </select>
                             <label htmlFor="limitDate" className="newTaskLabel">Fecha limite para la tarea:</label>
-                            <input className="inputNewTask" onChange={handleChange} name="limitDate" value={datos.limitDate} type="date" />
+                            <input className="inputNewTask form-control input" onChange={handleChange} name="limitDate"  type="date" />
                             <button type="submit" className="buttonNewTask">Añadir</button>
                         </form>
 
@@ -147,11 +152,15 @@ export default function Dashboard(props) {
                                     <h2 className="taskName">{task.taskName}</h2>
                                     <img src="https://thispersondoesnotexist.com/image" alt="Imagen de la tarea" className="taskImg" />
                                     <h3 className="taskPriority">{task.taskPriority}</h3>
+                                    <h3 className="taskLimitDate">{task.limitDate}</h3>
 
                                     <div className="buttons">
                                         <div onClick={() => editTask(task._id)} className="buttonEditDelete"><FontAwesomeIcon icon={faEdit} /></div>
                                         <div onClick={() => setIsModalDeleteOpen(true)} className="buttonEditDelete"><FontAwesomeIcon icon={faTrashAlt} /></div>
                                     </div>
+
+                                    {/*Modal Borrar*/}
+
                                     <Modal isOpen={isModalDeleteOpen}>
                                         <ModalHeader className="modalHeader">
                                             <div className="row">
@@ -172,9 +181,52 @@ export default function Dashboard(props) {
                                                 className="btn-no"
                                                 data-bs-dismiss="modal"
                                                 onClick={() => setIsModalDeleteOpen(false)}>No</button>
-                                            <button onClick={() => {deleteTask(task._id) && setIsModalDeleteOpen(false)}} type="button" className="btn-yes">Si</button>
+                                            <button onClick={() => deleteTask(task._id)} type="button" className="btn-yes">Si</button>
                                         </ModalFooter>
                                     </Modal>
+
+                                    {/*Modal Editar*/}
+
+                                   {/*  <Modal isOpen={isModalEditOpen}>
+                                        <ModalHeader className="modalHeader">
+                                            <div className="row">
+                                                <h2 className="modalTitle col">Editar Tarea</h2>
+                                                <button
+                                                    type="button"
+                                                    className="btn-close col"
+                                                    data-bs-dismiss="modal"
+                                                    aria-label="Close"
+                                                    onClick={() => setIsModalEditOpen(false)}><i className="fas fa-times">x</i></button>
+                                            </div>
+                                        </ModalHeader>
+                                        <ModalBody>
+                                            <p>Ingresa nuevo nombre de tarea:</p>
+                                            <input onChange={handleChange} className="form-control input" type="text" value={datos && datos.taskName}/>
+
+                                            <p>Ingresa nueva imagen de tarea:</p>
+                                            <input className="inputNewTask" onChange={handleChange} name="taskImge" value={datos && datos.taskImge} type="file" />
+
+                                            <p>Cambiar prioridad de la tarea:</p>
+                                            <select className="inputNewTask form-control input" onChange={handleChange} name="taskPriority" value={datos && datos.taskPriority} className="typePriority">
+                                                <option value="low">Baja</option>
+                                                <option value="medium">Media</option>
+                                                <option value="high">Alta</option>
+                                            </select>
+
+                                            <p>Cambiar fecha limite de la tarea:</p>
+                                            <input className="inputNewTask form-control input" onChange={handleChange} name="limitDate" value={datos && datos.limitDate} type="date" />
+                                        </ModalBody>
+                                        <ModalFooter>
+                                            <button
+                                                type="button"
+                                                className="btn-volver"
+                                                data-bs-dismiss="modal"
+                                                onClick={() => setIsModalEditOpen(false)}>Volver</button>
+                                            <button
+                                                type="button"
+                                                className="btn-done" onClick={() => editTask(task._id)}>¡Hecho!</button>
+                                        </ModalFooter>
+                                    </Modal> */}
                                 </div>
                             )
                         })}
