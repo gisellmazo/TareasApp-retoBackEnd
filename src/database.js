@@ -4,6 +4,8 @@ const database = 'mongodb+srv://gisellmazo:1214743656@cluster0.flrhc.mongodb.net
 
 mongoose.set('useFindAndModify', false);
 mongoose.connect(database,{
+    useCreateIndex: true,
+    useFindAndModify: false,
     useNewUrlParser: true,
     useUnifiedTopology: true
 

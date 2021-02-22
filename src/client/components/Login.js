@@ -33,16 +33,16 @@ export default function Login(props){
               console.log(values);
             }}>
             {(formik) => (
-             <Form>
-                <label htmlFor="user" className="label"><FontAwesomeIcon icon={faUser} /> Usuario:</label>
+             <Form action='/users/login' method="post"> 
+                <label htmlFor="email" className="label"><FontAwesomeIcon icon={faUser} /> Correo:</label>
                 <FormField
-                type="text"
-                name="user"
+                type="email"
+                name="email"
                 className="formField"/>
 
                 <label htmlFor="password" className="label"><FontAwesomeIcon icon={faLock} /> Contraseña:</label>
                 <FormField
-                type="text"
+                type="password"
                 name="password"
                 className="formField"/>
 

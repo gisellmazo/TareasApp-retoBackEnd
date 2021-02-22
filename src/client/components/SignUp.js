@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React, { useEffect, useState  } from "react";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faUser, faLock, faEnvelope } from '@fortawesome/free-solid-svg-icons'
 import { Link } from "react-router-dom";
@@ -8,6 +8,15 @@ import FormField from "./FormField";
 import '../styles/signup.css';
 
 export default function SignUp(props) {
+    const [datos, setdatos] = useState([{}])
+
+    useEffect(() => {
+        fetch('/signup')
+            .then(response => response.json())
+            .then(data => setdatos(data));
+            console.log(datos)
+    }, [])
+
     const validate = Yup.object({
         email: Yup.string().required('Correo es requerido'),
         user: Yup.string().required('Usuario es requerido'),
@@ -30,27 +39,22 @@ export default function SignUp(props) {
                         console.log(values);
                     }}>
                     {(formik) => (
-                        <Form>
+                        <form action="/users/signup" method="post" >
                             <label htmlFor="email" className="label"><FontAwesomeIcon icon={faEnvelope} /> Correo:</label>
-                            <FormField
+                            <input
                                 type="text"
                                 name="email"
                                 className="formField" />
-                            <label htmlFor="user" className="label"><FontAwesomeIcon icon={faUser} /> Usuario:</label>
-                            <FormField
-                                type="text"
-                                name="user"
-                                className="formField" />
 
                             <label htmlFor="password" className="label"><FontAwesomeIcon icon={faLock} /> Contraseña:</label>
-                            <FormField
-                                type="text"
+                            <input
+                                type="password"
                                 name="password"
                                 className="formField" />
 
                             <button className="btnSignup">Regístrarse</button>
 
-                        </Form>
+                        </form>
                     )}
                 </Formik>
             </div>
